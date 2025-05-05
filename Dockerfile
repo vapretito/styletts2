@@ -19,11 +19,12 @@ ENV CONDA_DEFAULT_ENV=styletts
 # Copiar código
 WORKDIR /workspace
 COPY StyleTTS2 /workspace/StyleTTS2
-COPY runpod_handler.py /workspace/runpod_handler.py
+COPY runpod_handler_styletts2_auto.py /workspace/runpod_handler_styletts2_auto.py
 
 # Instalar dependencias
 WORKDIR /workspace/StyleTTS2
 RUN pip install -r requirements.txt
-RUN pip install runpod
+RUN pip install runpod torchaudio requests
 
-CMD ["python", "/workspace/runpod_handler.py"]
+# Ejecutar el nuevo handler
+CMD ["python", "/workspace/runpod_handler_styletts2_auto.py"]
